@@ -1,28 +1,57 @@
 # Picsum Gallery
 
-Simple Flutter app that fetches a list of images from https://picsum.photos/v2/list and displays them in a clean list UI.
+Picsum Gallery is a Flutter app that loads and displays images from the public Picsum API (`https://picsum.photos/v2/list`). It demonstrates a clean mobile-style UI, pagination, client-side search, favorites, and a detail view.
 
-Features
+## Features
 
-- Infinite scrolling pagination
-- Search by author or photo ID
-- Favorite/bookmark images
-- Detail screen with full image and metadata
+- Fetches photos from `https://picsum.photos/v2/list`
+- Infinite scroll pagination with load-more behavior
+- Search by photo author or photo ID
+- Favorite/bookmark toggling for photos
+- Detail view with full image display and metadata
+- Clean UI built with provider state management
 
-Quick start
+## Architecture
 
-1. Install Flutter SDK (if not installed): https://flutter.dev/docs/get-started/install
-2. From the project root run:
+- `lib/main.dart` — App entry point, UI structure, app bar, search and favorites controls
+- `lib/providers/photo_provider.dart` — State management with provider, fetch, pagination, search and favorites logic
+- `lib/services/api_service.dart` — HTTP client for Picsum API requests
+- `lib/models/photo.dart` — Photo model mapping API JSON to Dart objects
+- `lib/widgets/photo_tile.dart` — Photo list item with image preview and favorite button
+- `lib/screens/photo_detail.dart` — Detail screen for a selected photo
+
+## Setup and Run
+
+1. Install Flutter SDK: https://flutter.dev/docs/get-started/install
+2. Open the project folder:
+
+```bash
+cd E:/internship/w3
+```
+
+3. Install dependencies:
 
 ```bash
 flutter pub get
+```
+
+4. Run the app:
+
+```bash
 flutter run
 ```
 
-Files of interest
+## Notes for explanation
 
-- `lib/main.dart`
-- `lib/providers/photo_provider.dart`
-- `lib/services/api_service.dart`
-- `lib/models/photo.dart`
-- `lib/widgets/photo_tile.dart`
+- The app uses `provider` for state management, keeping UI and data logic separated.
+- The list uses `RefreshIndicator` and `ListView.builder` for a responsive scrolling experience.
+- The detail page uses `Hero` animation for a smooth transition from the photo card.
+- Favorite state is stored in memory and can be toggled for each photo.
+
+## Useful commands
+
+```bash
+flutter pub get
+flutter analyze
+flutter run
+```
